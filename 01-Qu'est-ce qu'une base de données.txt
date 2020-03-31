@@ -1,0 +1,26 @@
+Qu'est-ce qu'une base de données ?
+
+-Une base de données c'est un ensemble structuré (organisé, de nos données)
+-Par exemple : Stocké la liste d'utilisateur de notre site.
+
+Système de gestion de base de donnéess : Il y en a plusieurs. Par exemple : 
+-MySQL/SQLlite/oracle/MicrosoftSQLserveur...
+-Ils vont manipulé nos données dans les bases de données.
+
+Nous allons utilisé MySQL car il est gratuit et très populaire.
+
+Comment il fonctionne ? Comment il manipule les données de nos base de données ?
+-Il utilise, un nouveau language : SQL 
+
+C'est d'ailleurs pour ça que la majorité des (SGBP) = (systèmes de gestion de base de donnée) ont le nom SQL dans leur nom.
+
+Comment nos pages web se relient à ce système de gestion de base de données ?
+-C'est la que entre PHP, il y aura des fonctions spécial, qui permettra à PHP de communiqué avec notre SGBD.
+-Il lui enverra des ordres, il récupèrera des informations.
+
+PHP va communiqué avec le SGBD (dans notre cas MySQL) MySQL va utilisé le language SQL pour manipulé les données qu'il y à dans notre BD.
+
+
+On va utilisé un outil connus qui s'appel PHPmyAdmin.
+On peut travailler, soit sur un serveur web en ligne, soit local(notre pc)
+Ici, nous seront orienté vers le serveur web local.

@@ -1,0 +1,55 @@
+On va créer une BDD (Base de données) Store(Magasin).
+
+On ne crée pas de table cette fois, on va importer.
+-Onglet : Import  (Récupérez le fichier store.sql que vous trouverez dans le dossier store[pas le dossier compressé rar, je l'ai laissé au cas où])
+-éxécuter
+
+-Nous avons maintenant, notre base de données à gauche avec plusieurs table. (customers / customer_adresses/order/etc/etc)
+____________________________________________________________
+-Allons explorer ça.
+-Dans customers par exemple vous y voyer plusieurs lignes : id / nom / prénom / email / etc / etc
+
+-Si je vais sur la structure de cette table (onglet structure)
+-On voit que ID c'est une clé et on a les autres champs en VARCHAR 100ou150 et TIMESTAMP
+
+-Le champ customer de la table CUSTOMER_ADRESSES à une clé grise. C'est une référence d'une clé d'une autre table. (c'est les adresse de nos clients, on aurait pu le mettre dans la table client mais comme il y a énormement de champ juste pour une adresse, on décide de le sortir dans une table externe et de faire le lien avec le champ customer) C'est un INT, ça veut dire qu'il correspondra au ID qu'il y a dans la table CUSTOMERS.
+
+-La table Orders à un ID pour définir une ligne de commande et ensuite elle à un lien vers customer et un lien vers product. Car une commande c'est un client qui à commandé un produit. 
+
+-product :: on a différent produit vendu dans le magasin.
+
+-product_categories :: les différentes catégories de nos produits.
+
+-reviews :: c'est les avis des clients.
+
+____________________________________________________________
+
+Allons maintenant dans Designer/concepteur de notre base de données. (Réorganisez les tables dans le designer car c'est surement le bordel) - Voir l'image dans le dossier images.
+
+
+Il y a des fois des relations :
+    -many to many : et rentre en jeux la ce qu'on appel : des tables intermédiaire.
+
+La table : Orders - (composé de 3 lignes) [id = ce sera l'id de chacune des lignes qu'il y a dans les orders, une référence à la clé customer, une référence à la clé product.]
+-Orders :: est une table intermédiaire entre customer et product
+-(Un client peut commander plusieurs produits et un même produit peut être commander par plusieurs clients.) C'est une relation many to many et on a fait une table intermédiaire pour exprimer ce genre de relation.
+
+
+-On a d'autre relations comme : Customer_adresses à customers 
+-la par exemple : les adresses des clients, on a trouvé qu'il y avait trop de champs donc on l'a sorti dans une table à part et le lien qu'il y aura dans cette table à part c'est l'id du customers. Chaque adresse sera relié à un customer. Car ça serait dommage de trop charger notre table customer avec tout les champs de l'adresse.  
+
+
+-Reviews 
+-Elle à un ID et elle aussi relier encore à la clé customers et à la clé product.
+    -Quand quelqu'un laisse un avis sur un produit, ça relie encore une fois un client à un produit. Cette table à encore d'autres champs supplémentaire, elle à le titre de ma review, le contenu de ma review dans le champ body. D'ailleurs un avis ça peut être un très long texte et c'est pour ça qu'on à pas utiliser VARCHAR mais TEXT et il y a la date à laquel la personne à laissé son avis. 
+    ____________________________________________________________
+
+    Si on va maintenant dans product.
+        -on voit tout les produit qu'on a dans le magasin, les catégories ( ici, 1 / 5 et 6)
+
+____________________________________________________________
+
+Allons maintenant dans product_categories.
+-Je veux supprimer la catégorie 5.
+    -Il me dit que je ne peux pas la supprimer car c'est une : clé secondaire = foreign key
+-Ma relation m'a permis de ne pas faire de bétise, je ne peux pas supprimé une catégorie dans laquel il y a encore des produits. 

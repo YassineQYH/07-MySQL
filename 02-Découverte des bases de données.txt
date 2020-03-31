@@ -1,0 +1,131 @@
+(Pour travailler sur la VM pas besoin de faire le point suivant)
+-Installer un serveur web local. (Télécharger et Installer XAMPP)
+une fois installer et les moduls Apache et MySQL activé, aller sur http://localhost/phpmyadmin/
+___________________________________________________________________________________________________
+Aller dans :
+-Bases de données 
+-Création d'une base de données : Choisir un nom (world)et créer.
+-Notre base de données s'est rajouté sur la gauche.
+
+Les bases de données sont composé de Table. ça va être les différents éléments qu'il y aura dans notre base de données.
+
+Dans notre monde il y a des personnes. On crée une table persons à laquel on va donner 3 colonnes.(executer)
+___________________________________________________________________________________________________
+Voila notre table de personnes.
+Chaque colonnes représente un champ (des caractéristiques des choses qu'il y aura dans cette table.)
+Caractéristiques : numéro d'identité de la personne (ID) // son nom (name) // son age (age).
+Nos personnes sont défini par ses 3 colonnes.
+
+-Pour chaque type de colonne je doit définir le type d'informations que je vais stocker. ( un chiffre / un string / une date) ::
+
+-INT = chiffres ( comme integer)
+-VARCHAR = variable de caractère (des lettres / string) 
+-TEXT = pareil mais on va pouvoir stocker des string très long, on peut stocker un article entier dedans.
+-DATE = Une date.
+
+Les types d'information ci-dessus sont les 4 types les plus connus.
+Il y à la liste complète des types qu'on peut avoir dans chacun de ces champs.
+Par exemple les champs peuvent être : 
+-Numérique :: On peut définir tout avec des niveaux de précision très élevé. (petit int (chiffre entre 0 et 3) // un petit // un medium // un moyen // un chiffre à virgule // décimal // etc etc)
+
+Donc, pour nos TYPE nous aurons :
+
+-id :: on le laisse en INT
+-name :: c'est un nom donc :: VARCHAR :: taille/valeur = 100 charactères.
+-age :: INT
+
+___________________________________________________________________________________________________
+INDEX ::
+Le concepte de clé dans une table.
+Je veux une façon de définir spécifiquement chaque individu de ma table personnes.
+-On ne peut donc pas prendre le nom car il y y avoir 2 personnes avec le même nom.
+-Par contre je décide que le numéro d'identité (id) sera la clé de ma table car il n'y aura pas 2 personnes avec le même numéro d'identité.
+
+Aller dans l'onglet :: INDEX :: et choisir primaire pour :: id :: et executé.
+___________________________________________________________________________________________________
+A_I
+AUTO INCREMENTE.
+Je ne veux pas gérer les id des gens que je rajoute dans ma personne. Lui il aura l'id 257 celui la aura l'id 492, ah le 492 à déjà été donné :/ non je ne veux pas me prendre la tête. Donc je le laisse en auto incrémente ce qui veut dire qu'il augmentera à chaque fois tout seul de 1. 
+La 1ere personne que je rentre aura l'id 1, la suivante 2 etc... ça se passera tout seul.
+-Je coche la case A_I et j'enregistre.
+___________________________________________________________________________________________________
+-Voila, notre table à été créer.
+Donc maintenant, on a notre base de donnée WORLD avec de dans la table PERSONNE.
+
+-Comment inséré des données dans cette table ??
+Toute les personnes ce sont des lignes, des enregistrements. Donc maintenant on va insérer des lignes dans notre table.
+-Aller dans la table PERSONS et dans l'onglet INSERER :
+-ID :: est au auto incremente donc je ne m'en occupe pas et je passe directement à name.
+-name :: Je rajoute un nom 
+-age :: je rajoute un age
+-J'éxecute.
+
+-Je vais maintenant dans BROWSE/PARCOURIR 
+-Je retrouve la personne ajouté dans ma table personne avec l'id 1 qui c'est fait tout seul.
+
+-Ajoutons d'autres personnes.
+Insérer / Décocher la case Ignorer
+Executer.
+
+-Je vais sur ma table et je vois que j'ai 3 enregistrements dans mon tableau.
+___________________________________________________________________________________________________
+
+Maintenant, Je retourne dans ma base de données en cliquant sur "Base de données: world"
+-Je veux créer une autre table. Dans notre BD (base de données) world on à les personnes mais on a aussi par exemple, les animaux.
+
+-Créez la table :: animals avec 3 colonnes.
+caractéristiques :
+-id (Ils n'ont pas de numéro d'identité mais il faut savoir que id c'est une convention. En général pour définir cette ligne la qui sera les clés de mes tables je vais souvent les appelé ID comme identité.) :: INT :: clé primaire :: A_I 
+-nom :: VARCHAR 100 
+-catégorie // VARCHAR 100
+___________________________________________________________________________________________________
+Quand je retourne dans ma BD world, on a maintenant 2 tables, la table animals(0 enregistrement) et la table persons (avec 3 enregistrements).
+-Insérons des animaux.
+
+-Nous avons maintenant 2 tables, la table animals (3 enregistrements) et la table persons (avec 3 enregistrements).
+___________________________________________________________________________________________________
+Comment supprimer.
+
+Je veux supprimer la ligne "Denver Dinosaure" je clique tout simplement sur supprimer/delete et confirmer.
+___________________________________________________________________________________________________
+De la même manière, on peut éditer une ligne.
+Je change le nom de snoopy à SnoopDog
+___________________________________________________________________________________________________
+Rajouter un champ dans ma table : animals 
+-Il peut y avoir des relations entre les différentes tables dans une base de données.
+
+-Aller dans structure après avoir choisis la table animals. 
+-ajouter une colonne, il nous propose après category (on peut choisir) éxécuter.
+-nom de la colonne : owner(possésseur : pour dire à qui appartient cet animal, on va dire que les animaux appartiennent à des personnes. C'est ça le type de ralation que j'ai envie de mettre dans ma BD) 
+-OWNER on le laisse en int. Pourquoi ? Ce qui permet d'identifier une personne c'est son ID donc c'est vers ce champ la que je vais pointer. Si par exemple, Kitty appartient à John qui lui à l'ID 1.
+-Je retourne dans ma DB et je vais éditer les lignes.
+-Pour Kitty je vais mettre 1 dans OWNER et pour SnoopDog le chien il va appartenir à kevin.
+
+-Revenons dans la structure.
+La clé OWNER n'est pas un champ classic, d'ailleurs je vais rajouter un index sur cette colonne. Cliquer sur index. 
+-Pourquoi ? Car c'est une référence à une clé primaire d'une autre table. 
+-On appel ça :: Une clé étrangère. (clé primaire = primary keys // clé secondaire = foreign key).
+
+Il y a plusieurs style de relations.
+-1 à 1 / one to one = Chaque personne peut avoir max 1 animal et chaque animal peut être possédé par max 1 personne.
+-1 à plusieurs / 1 to many = Les personnes peuvent avoir plusieurs animaux.
+-many to many  = une personne peut avoir plusieurs animaux et un animal peut être possédé par plusieurs personne. (En général on va les exprimé avec ce qu'on appel une table intermédiaire).
+___________________________________________________________________________________________________
+Comment on peut définir une relation sur une BD ?
+-Retourner sur la BD world et aller dans l'onglet (designer/Concepteur)
+-La, on y voit nos 2 tables (persons et animals).
+-La, je vais créer une relation.
+-Cliquer à gauche sur create relation.
+    -Choissez la clé qui va être référencer dans une autre table.
+    -Choissez :: ID
+
+    -Choissez la clé étrangère.
+    -Choissez :: OWNER
+
+-Et la, j'ai plusieurs paramètres qui vont nous servir à définir ce qu'il se passe dans cette relation.
+-Par exemple : On a défini que les personnes avait des animaux, donc il y a pleins d'animaux avec des champs OWNER.
+-Qu'est-ce qu'il va se passer si je décide de supprimer un enregistrement de ma table persons.
+    Est-ce que je dois supprimer aussi tout les animaux ou pas ?
+    C'est le genre de réfléxion qu'on peut avoir et qu'on peut répondre avec ce genre de champs.
+
+Les relations ne sont pas forcément obligatoire dans notre base de données MAIS ça permet de créer des automatisme. Par exemple si je décide de supprimer une de mes personne qui à des animaux est-ce que je veux automatiquement supprimer tout les animaux qu'il a aussi ?.
