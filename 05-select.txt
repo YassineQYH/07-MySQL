@@ -1,0 +1,60 @@
+-SELECT - Permet de récupérer les informations de notre BDD
+_________________________________________________________________________________________
+-Allons sur la base de données store car c'est la bas qu'il y a le plus de données, ça sera plus interéssant sur un exemple avec pleins de données.
+_________________________________________________________________________________________
+-BDD Store - table customers (j'ai dedans 23 enregistrements.)
+    -onglet BROWSE/PARCOURIR - il nous explique que pour nous montrer cette liste il a fait la commande/requette :
+    SELECT * FROM `customers`
+
+    -   * = séléctionne moi tout les  champs. Ce qui veut dire que je vais voir l'id/le first_name/le last_name/etc/tout les champs qu'il y a dans la table.
+    -   FROM = de quel table tu veux séléctionner ?
+    -   `customers` = de la table customers
+_________________________________________________________________________________________
+    Allons maintenant dans la partie SQL du context de la BDD store et tapper :
+        -SELECT * FROM customers;
+        -executer
+        -Et on a exactement la même liste, la liste de tout nos enregistrements.
+
+    -Restons dans le context de cette table customers et puis SQL
+        -Le menu est un peu différent, on a des boutons pour nous simplifier la vie : 
+            -SELECT* /SELECT / INSERT / UPDATE / DELETE / Clear / Format / Get auto-saved query
+
+            -SELECT* qui nous montre :: SELECT * FROM `customers` WHERE 1
+            -SELECT qui me spécifie tout les champs qu'il y a dans cette table :: qui nous montre  :: SELECT `id`, `first_name`, `last_name`, `email`, `password`, `avatar`, `join_date` FROM `customers` WHERE 1
+_________________________________________________________________________________________
+Disons que je ne suis pas interessé par tout les champs et donc je ne vais pas utiliser l'étoile * je vais utiliser les nom des champs qui m'intéresse.
+    -Je veux id / first_name / et last_name de la table customers
+        -SELECT id, first_name, last_name FROM customers;
+        -executer
+        -Résultat : on a bien nos 23 enregistrements mais on a que les colonnes id / first_name et last_name
+    -Voila, ça c'est juste pour sélectionner les champs particulier qui nous intéresse.
+_________________________________________________________________________________________ 
+-Retourner voir le champs customers
+-Dans le champs mdp il y à 20x 1234 et 3x des mdp différent plus compliqué.
+
+-On veut faire une étude sur les mdp des utilisateurs de notre site.
+    -Je vais dans la partie SQL 
+        -Si je fais : SELECT password FROM customers;
+        -Je vois tout mes enregistrements mais je vois seulement la colonne mdp
+-Moi je veux juste savoir les mdp différent qui éxiste. Si 1234 à été utilisé plusieurs fois, je n'en veut qu'une seul ligne.
+    -Pour faire ça, j'utilise le nouveau mot clé DISTINCT devant le mot password 
+    - SELECT distinct password FROM customers;
+    -Pour le coup, il ne me montre donc bien que 4 lignes avec le 1234 qu'une seul fois.
+_________________________________________________________________________________________
+Maintenant, je ne veux pas voir toute les données de mes customers, ce qui m'intéresse c'est juste les 10 premiers customers.
+    -Pour ça, j'utilise le mot LIMIT 
+    -SELECT * FROM customers LIMIT 10;
+_________________________________________________________________________________________
+Pour le moment, on reçoit les données mais on a pas de façon de les organisé, CAD (c'est à dire) de les mettre dans un ordre précis. Comment faire ??
+    -Pour le moment, il sont organisé par ordre croissant pour l'id
+    -je veux faire l'inverse !
+        -On utilise :: ORDER BY :: ça veut dire, ordonné par ::
+        -ORDER BY id (ordoné par le champs id)
+        Maintant, après le champ je vais rajouter un autre mot clé qui va nous permettre de savoir si c'est par ordre croissant ou décroissant.
+        -ASC = croissant (Si on écrit rien c'est ce qu'il se passe par défaut.)
+        -DESC = décroissant
+
+            -SELECT * FROM customers ORDER BY id DESC;
+_________________________
+Je veux tout les prénoms par ordre alphabétique(donc par ordre croissant)
+            -SELECT first_name FROM customers ORDER BY first_name;

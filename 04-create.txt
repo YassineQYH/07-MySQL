@@ -1,0 +1,37 @@
+On va apprendre le language SQL.
+______________________________________________________________________________________________
+-On va tapper du code SQL directement dans phpmyadmin
+    -onglet : sql (Il est important de savoir le context dans lequel on se trouve quand on lance cet onglet SQL, c'est pas la même chose si on est dans le context du serveur ou si on est dans une base de donnée ou dans une table précise.)
+
+______________________________________________________________________________________________
+-On va commencer avec notre 1ere commande en mySQL
+    -On va créer une base de donnée en SQL.
+__________________________________________
+-On va écrire CREATE DATABSE et on va lui donner un nom mydatabase
+    -CREATE DATABSE mydatabase;    
+    -exécuter
+    -En général quand on voit du vert c'est que ce qu'on a voulu faire s'est bien passé. // MySQL a retourné un résultat vide (c'est à dire aucune ligne). (traitement en 0,0010 seconde(s).)
+    -On retrouve mydatabase dans la liste des bases de données mainteant.
+
+(Présision : j'ai écris en MAJ les mots de clé mySQL // Mais // ça fonctionnera aussi en minuscule)
+(Certain systeme de gestion de base de donnée dans lesquel on est obligé de mettre un ; à la fin de la commande donc je vous recommande de prendre cette habitude qui est une bonne pratique.)
+
+______________________________________________________________________________________________
+-Toujours en restant dans le context du serveur, 
+    -on va maintenant créer une table
+_____________________________________
+-On va créer une table mytable, on y met un champ id avec le type de ce champ, donc int avec 11 caractères, on va créer un autre champ (en anglais champ se dit field) de type varchar avec 100 caractère et un autre champ aussi de type varchar mais avec 250 caract et on oubli pas de finir avec le ;
+-2 façon de l'écrire :
+    a-CREATE TABLE mytable (id int(11), field1 varchar(100), field2 varchar(250));
+    b-CREATE TABLE mytable (
+        id int(11), 
+        field1 varchar(100), 
+        field2 varchar(250)
+    );
+    -Exécuté
+        -Erreur - #1046 - Aucune base n'a été sélectionnée
+
+-Et oui, nous sommes dans le context du serveur, j'ai besoin d'aller sur une BDD si je veux créer une table.
+-Allons dans la BDD que nous avons donc créer précédemment.
+    -Et la on voit du vert, notre table s'est bien rajouté à notre BDD  
+    -Si je clique sur mytable et puis structure, je vois bien les champs qu'il y a dans ma BDD.

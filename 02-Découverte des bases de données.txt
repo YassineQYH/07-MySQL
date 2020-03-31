@@ -22,6 +22,7 @@ Nos personnes sont défini par ses 3 colonnes.
 -VARCHAR = variable de caractère (des lettres / string) 
 -TEXT = pareil mais on va pouvoir stocker des string très long, on peut stocker un article entier dedans.
 -DATE = Une date.
+-La différence entre CHAR et VARCHAR est que CHAR a une taille fixe, tandis que VARCHAR a une longueur variable. La longueur de CHAR est donc fixée à la longueur que nous définissons lors de la création de la table.
 
 Les types d'information ci-dessus sont les 4 types les plus connus.
 Il y à la liste complète des types qu'on peut avoir dans chacun de ces champs.
