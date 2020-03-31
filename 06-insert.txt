@@ -1,0 +1,32 @@
+INSERT - INSERER DES LIGNES DANS NOTRE TABLES, AJOUTER DES ENREGISTREMENTS.
+______________________________________________________________________________________________
+J'usquà maintenant on cliquait sur :: INSERT
+Maintenant, on va le faire en SQL.
+
+    -Aller sur SQL  dans le context de la table customers
+    -Ajouter un customers
+        -INSERT INTO customers()
+            définir dans quel champ on va mettre quel valeur(Donc la on va mettre les noms des champs)
+            Rappel, id est en AutoIncremente donc pas besoin de le spécifier pour ajouter quelque chose dans id donc on commence directement par first_name.
+        -INSERT INTO customers(first_name, last_name, email, password, avatar, join_date)
+        -Une fois qu'on à mis les champs dans lesquel je vais rentrer mes valeurs, je met mes valeurs avec le mot VALUE.
+        -INSERT INTO customers(first_name, last_name, email, password, avatar, join_date) VALUE ('John', 'Codeur', 'john@apprendre-a-coder.com', '1234', 'images/john.jpg', NOW());
+        // Parenthère pour la date !! Nous le verrons plus tard donc pour le moment on écrit comme ça !! NOW !! ça veut dire la date de maintenant.
+        -Executer.
+            - 1 ligne insérée.
+            -Dans la table customers, nous voyons bien à la fin John qui vient d'être ajouté avec le reste de ses infos.
+______________________________________________________________________________________________
+Variantes sur le INSERT
+
+    -Aller sur SQL dans le context de la table customers
+        -Cliquer sur le bouton INSERT (Mais sur nos pages web on aura pas ce genre de raccourcit) 
+        -Donc on efface et on retappe tout depuis le début.
+        -INSERT INTO customers()
+        -Mais cette fois-ci, je n'ai pas envie de m'embêter à rajouter tout les autres champs. Les autres champs ce n'est pas grave, ils vont rester vide pour l'instant. 
+        -Il faut savoir, si on a défini que ça permettait d'être vide, on à par exemple défini que quand il est vide il a une valeur par défaut, alors ça sera cette valeur par défaut qui se mettra à la place.
+        -à droite, il y a une colonne pour rappeler les nom et pour me permette de les rentrer directement.
+        -Pour le moment, on rentre juste le first_name et le last_name. Le reste, on laisse vide pour l'instant.
+        -INSERT INTO customers(first_name, last_name) VALUE ('Tim', 'Dupont');
+        -Executer
+            -La ligne à bien été inséré.
+            -Tim Dupont à bien été ajouté dans ma table. Par contre, tout les autres champs que je n'ai pas référencé sont vide.
