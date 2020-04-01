@@ -1,0 +1,28 @@
+ALIAS
+
+On va commencer directement par un exemple.
+
+    -SQL
+    Sélectionner dans la table customers l'email et le mdp.
+        -SELECT email, password FROM customers;    
+            Il y a 24 ligne avec le nom des 2 colonnes qui sont email et password.
+            Je veux que le mot password s'appel motdepasse, je vais lui donner un ALIAS avec AS.
+                -SELECT email, password AS motdepasse FROM customers 
+
+Je vais dans : 
+-customer_addresses
+-J'ai plusieurs colonnes et je veux avoir toutes ses infos dans la même colonne.
+    -Je veux l'id et l'adresse. Pour ça, on va utiliser la fonction CONCAT qui nous permet de concaténé.
+    Comment l'utiliser ? On va noter les noms de nos champs.
+    -SELECT customer, CONCAT(address, '- ', address2, '- ', city, '- ', state, ': ', zipcode) FROM customer_addresses
+        Remarqué le nom de la colonne adresse... Je veux bien évidemment changer le nom de cette colonne.
+            -SELECT customer, CONCAT(address, '- ', address2, '- ', city, '- ', state, ': ', zipcode) AS complete_address FROM customer_addresses
+
+
+On peut aussi créer un ALIAS pour nos tables.
+    Dans notre cas ça ne va pas servir à grand chose de faire un ALIAS sur une table mais quand dans une requête SQL rentre en jeux plusieurs tables, c'est la que va prendre toute l'importance des ALIAS sur les tables.
+
+    je veux faire un alis sur la table customer_addresses, donc apres le nom de la table je vais écrire AS adrdresses.
+        -SELECT * FROM customer_addresses AS addresses;
+        (On ne va pas voir grand chose car c'est sur le nom de la table et pas un des champs de la table).
+ 

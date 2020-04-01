@@ -1,0 +1,15 @@
+DELETE - Permet de supprimer des lignes de nos tables.
+
+Toujours avec la table customers, on avait précédemment ajouter la ligne Tim Dupont. Je veux maintenant la supprimer.
+
+    -SQL
+        -DELETE FROM customers WHERE first_name = 'Tim';
+        -Confirmer l'exécution de la tâche.
+        -Ligne supprimer.
+
+    -On va aller sur la BDD world car je veux pas supprimer ici.
+    -Aller dans la table animals (on a 2 enregistrements : 1-kitty le chat et 2-Snopdog le chien.)
+        -SQL
+            -DELETE FROM animals;
+            (2lignes ont été affecté = ce qui veut dire que toute les lignes de la table animals ont été supprimé.) FAIRE ATTENTION à CETTE COMMANDE !!
+

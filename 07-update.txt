@@ -1,0 +1,15 @@
+UPDATE - Permet de mettre à jour des données qui ont déjà été inséré dans notre base de donnée.
+
+-Jusqu'à maintenant on le faisait en cliquant sur le bouton EDIT, 
+    -On va maintenant le faire directement avec SQL.
+        -Aller sur SQL : syntaxe : écrit UPDATE spécifier ensuite le nom de la table qu'on veut updater et la on dit ce qu'on veut faire : SET => veut dire 'fait'
+
+        -Les mdp était trop simple, on veut les mettre plus compliqué.
+            -UPDATE customers SET password='x1yt45'
+                -Il me dit que 25 lignes ont été affecté, il a donc mis à jour 25 lignes (toute les lignes qu'il y avait dans ma table customers)
+
+        -Je veux changer le mdp d'une seul ligne. juste celui de John.
+        -Je vais utiliser WHERE (= où) et ensuite j'ai envie de le sélectionné par le first_name
+            -UPDATE customers SET password='newpassword' WHERE first_name='John'
+            (La, il va changer le mdp de tout ceux qui ont le first_name John)
+                -1 ligne affectée.

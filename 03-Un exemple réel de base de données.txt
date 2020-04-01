@@ -29,7 +29,6 @@ Allons maintenant dans Designer/concepteur de notre base de données. (Réorgani
 
 Il y a des fois des relations :
     -many to many : et rentre en jeux la ce qu'on appel : des tables intermédiaire.
-
 La table : Orders - (composé de 3 lignes) [id = ce sera l'id de chacune des lignes qu'il y a dans les orders, une référence à la clé customer, une référence à la clé product.]
 -Orders :: est une table intermédiaire entre customer et product
 -(Un client peut commander plusieurs produits et un même produit peut être commander par plusieurs clients.) C'est une relation many to many et on a fait une table intermédiaire pour exprimer ce genre de relation.

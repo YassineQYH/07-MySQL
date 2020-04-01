@@ -1,0 +1,28 @@
+WHERE - Où
+
+        -La où les noms de familles sont Smith
+        -SELECT * FROM customers WHERE last_name='Smith';
+            -Il me trouve 2 personne qui ont le nom de famille Smith. id 1 et id 22
+        
+        -SELECT * FROM customers WHERE id=18; (id c'est pas une variable de type texte mais numérique, c'est un int donc pas besoin de mettre les guillemet)
+            -Il trouve bien Christian Hayhouse qui se trouve à l'id 18
+
+    -On peut jouer avec les valeurs numérique.
+    -Je veux les 10 premiers enregistrement.
+        -SELECT * FROM customers WHERE id <= 10;
+
+Dans le WHERE, on peut aussi composer les conditions. Par exemple, je veux tout ceux qui ont l'id qui sont <= 10 ET last_name="Smith";  (Les 2 conditions doit être vrai.)
+        -SELECT * FROM customers WHERE id<=10 AND last_name="Smith";
+            -Cette fois-ci il me reste bien qu'un Smith et non plus les 2 qu'on avait précédemment car l'autre Smith avait un id supérieur à 10.
+
+    Biensur, on peut en mettre autant que l'ont veut de conditions.
+        
+        -SELECT * FROM customers WHERE id<=10 OR last_name='Smith';
+    La condition de gauche OU la condition de droite.
+        -SELECT * FROM customers WHERE (id<=10 and last_name='Smith') OR first_name='Donald';
+            -Il affiche donc Michelle Smith avec l'id 1 et Donald Duck id 5.
+
+    Si une famille m'intéresse, la famille Smith et Thompson.
+    Je veux qu'il me sélectionne tout les customers dont le last_name ai une de ces 2 valeurs (Smith et Thompson). IN = DEDANS 
+        -SELECT * FROM customers WHERE last_name IN ('Smith', 'Thompson');
+            -On retrouve bien 5 valeurs. 2 Smith et 3 Thompson.

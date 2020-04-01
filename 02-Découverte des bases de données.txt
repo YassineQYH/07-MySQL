@@ -4,7 +4,7 @@ une fois installer et les moduls Apache et MySQL activé, aller sur http://local
 ___________________________________________________________________________________________________
 Aller dans :
 -Bases de données 
--Création d'une base de données : Choisir un nom (world)et créer.
+-Création d'une base de données : Choisir un nom (world)et créer. (Choisir utf8mb4_general_ci)
 -Notre base de données s'est rajouté sur la gauche.
 
 Les bases de données sont composé de Table. ça va être les différents éléments qu'il y aura dans notre base de données.
@@ -39,7 +39,7 @@ ________________________________________________________________________________
 INDEX ::
 Le concepte de clé dans une table.
 Je veux une façon de définir spécifiquement chaque individu de ma table personnes.
--On ne peut donc pas prendre le nom car il y y avoir 2 personnes avec le même nom.
+-On ne peut donc pas prendre le nom car il peut y avoir 2 personnes avec le même nom.
 -Par contre je décide que le numéro d'identité (id) sera la clé de ma table car il n'y aura pas 2 personnes avec le même numéro d'identité.
 
 Aller dans l'onglet :: INDEX :: et choisir primaire pour :: id :: et executé.
@@ -108,9 +108,13 @@ La clé OWNER n'est pas un champ classic, d'ailleurs je vais rajouter un index s
 -On appel ça :: Une clé étrangère. (clé primaire = primary keys // clé secondaire = foreign key).
 
 Il y a plusieurs style de relations.
+__________________
 -1 à 1 / one to one = Chaque personne peut avoir max 1 animal et chaque animal peut être possédé par max 1 personne.
+__________________
 -1 à plusieurs / 1 to many = Les personnes peuvent avoir plusieurs animaux.
+__________________
 -many to many  = une personne peut avoir plusieurs animaux et un animal peut être possédé par plusieurs personne. (En général on va les exprimé avec ce qu'on appel une table intermédiaire).
+__________________
 ___________________________________________________________________________________________________
 Comment on peut définir une relation sur une BD ?
 -Retourner sur la BD world et aller dans l'onglet (designer/Concepteur)
