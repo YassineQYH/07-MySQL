@@ -1,0 +1,54 @@
+JOIN - Jointure : C'est ce qui va nous permettre de faire les relations entre les différentes tables.
+
+Commençons par des exemples.
+
+    -Ouvrir la table product et product_categories chacun dans un onglet de votre navigateur internet.
+    -Ouvrir SQL
+        -Chaque produit appartient à une catégorie et c'est ce qui le relie dans le champ category. On à un chiffre ici, il correspond à l'id de la table product_categories
+    -Si je vais dans la table product, par exemple : Android Phone, ça catégorie c'est le 1, ça veut dire que le nom de sa catégorie c'est dans product_categories à l'id 1 c'est Electronics.
+
+    -Je veux écrire le nom de toutes mes catégories avec le nom des produits qu'il y a dans ces catégories à côté.
+    -Comment Faire ? Je vais séléctionné... Alors cette fois ci, on parle de 2 tables différentes. 
+    -Le 1er champ qui' m'intéresse se trouve dans la table :
+        (Allons dans la table product_categories) Comme ça il sera capable de compléter mes phrases, ça sera plus simple.
+            -product_categories
+
+        -On va séléctionné on a dit le nom de la catégorie. C'est qui ? D'habitude on met jsute name mais maintenant, vu qu'il va y avoir plusieurs tables croisé j'ai besoin de précisé que c'est le name de la table product_categories et ensuite je met un point pour dire que c'est la table product_categories et le champ name.
+
+    -Le 2ème champ que je veux avoir on a dit que c'est dans la table products et c'est le nom du produit donc c'est le champ qui s'appel name aussi. Rappel : dans la table product il y a le nom aussi.
+    -La ce qu'on va faire, comme d'habitude on écrit FROM et on va dire le nom de la table. Par exemple le nom de la table product_categories mais ce qui va changer cette fois-ci c'est que je vais le relier avec une information spécial.
+    -Je vais écrire INNER JOIN (joint les moi) qu'est-ce que tu vas me joindre ? Cette table product_categories avec une autre table. Quelle table ? La table products.
+    -Comment faire ce lien entre les 2 tables ? On sait que ce qui va faire ce lien entre les 2 tables c'est le champ catégorie dans la table product par rapport au champ id dans la table product_categories.
+    -On va donc écrire :: ON product_categories.id = products.category;
+    (On aurait pu écrire le WHERE avec avec les JOIN on utilise le ON)
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+        -SELECT product_categories.name, products.name FROM product_categories INNER JOIN products ON product_categories.id = products.category; 
+
+         -On obtient le nom de notre catégorie et le nom de notre produit.
+______________________________________________________________________________________________
+           
+Je veux que la colonne de gauche me donne toute les catégories qui existe, peut importe si on a pas de produit dans cette catégorie.
+
+    Cette fois-ci, au lieu de mettre INNER JOIN (qui veut dire : cherche moi toute les relations/jonction que tu as, cad où il y a et un champ à gauche et un champ à droite). Je vais utiliser : LEFT JOIN (CAD que la table qui va diriger comment ça va se passer c'est la table qui se trouve à gauche quoi qu'il se passe.)
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+    -SELECT product_categories.name, products.name FROM product_categories LEFT JOIN products ON product_categories.id = products.category; 
+
+    -On obtient maintenant, 3 catégories supplément avec le nom NULL car il n'y a pas de valeur contrairement au INNER JOIN où on ne les voyait pas.
+______________________________________________________________________________________________
+Si il y avait des produits qui n'avait pas été mis dans une catégorie spécifique (ce qui n'est pas notre cas) 
+J'aurais pu écrire à la place du INNER : RIGHT
+______________________________________________________________________________________________
+
+Le nom product_categories c'est long à écrire à chaque fois donc je vais faire :
+Dans la BDD store.
+
+    -SELECT pc.name, p.name FROM product_categories AS pc INNER JOIN products AS p ON pc.id = p.category;
+
+    -Ce qui est bien maintenant c'est que cet ALIAS pc je vais pouvoir l'utiliser partout, partout où il est écrit product_categories dans ma commande je peux écrire pc.(pc est un mot que j'ai choisis car ce sont les initial de product_categories)
+    -J'ai fait pareil pour product je lui ai donné l'ALIAS p 
+
+Ici en l'occurence on a 2 colonnes avec 2x le nom name car ce sont les 2 de nos champs dans chacune de nos 2 tables donc la il serait judicieux de donner un alias aussi au champs et non seulement au tables.
+
+    -SELECT pc.name AS categoryName, p.name AS productName FROM product_categories AS pc INNER JOIN products AS p ON pc.id = p.category;

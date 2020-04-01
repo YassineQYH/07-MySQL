@@ -1,0 +1,64 @@
+DATE
+
+Rappel sur les différent type de date.
+    -DATE = jour mois année
+    -DATETIME = une journée et un temps dans la journée : jour mois année & seconde minute heure
+    -TIMESTAMP = comme DATETIME
+    -TIME = un temps : seconde minute heure 
+    -YEAR = une année
+
+
+-Ok, nous pouvons maintenant faire des requêtes basé sur les dates.
+-Retournons sur la table curstomers et ouvrir un onglet SQL.
+-Je veux récupérer first_name last_name, join_date et faire une condition sur le join_date 
+(join_date = la date à laquelle il a rejoint le magasin donc à la quelle il s'est inscrit)
+On va retourner sur notre table et on va retourner toute les valeur donc la join_date égale à ça 2014-02-18 21:17:26
+    -SELECT first_name, last_name, join_date FROM customers WHERE join_date = '2014-02-18 21:17:26';
+        -On a ici 6 enregistrement où la join_date est égale à exactement 2014-02-18 21:17:26
+
+_______________________________________
+INTERVAL
+________
+Compliquons un peu notre requêtes SQL, pas en donnant une date exacte mais en disant que je veux que je join_date soit >= à cette date et join_date <= à une autre date.
+
+    -SELECT first_name, last_name, join_date FROM customers WHERE join_date >= '2014-02-18 00:00:00' AND join_date <= '2014-02-21 00:00:00';
+
+    (C'est comme ça qu'on peut séléctionner une interval pour les dates.)
+    On à ici tout ceux qui se sont connecté entre ces 2 dates. AU toal 20 enregistrement.
+
+
+Une autre façon d'écrire exactement la même chose. Au lieu d'écrire join_date est >= à ça et < à ça on peut simplement écrire WHERE join_date et utiliser les mot BETWEEN et AND 
+
+    -SELECT first_name, last_name, join_date FROM customers WHERE join_date BETWEEN '2014-02-18 00:00:00' AND '2014-02-21 00:00:00';
+______________________________________________________________________________
+FONCTION 
+YEAR
+Je veux l'année
+_________
+Les fonctions qui nous permette de spécifié quelle partie on veut d'une date. Exemple : je veux juste la journée ou la seconde. Moi je veux l'année. Je vais donc utiliser la fonction YEAR et on va donner à ce résultat un ALIAS pour qu'il soit plus compréhensible. AS  join_year
+
+    -SELECT first_name, last_name, YEAR(join_date) AS join_year FROM customers WHERE join_date BETWEEN '2014-02-18 00:00:00' AND '2014-02-21 00:00:00';
+        -On obtient donc : first_name / last_name / join_year
+_______________________________________
+Voyons rapidement les autres fonctions qui existe.
+
+______________________________________________________________________________
+FONCTION
+MONT et DAY
+Je veux juste le mois et je veux juste le jour.
+_______________
+Je veux aussi le mois
+    -SELECT first_name, last_name, YEAR(join_date) AS join_year, MONTH(join_date) AS join_month, DAY(join_date) AS join_day FROM customers WHERE join_date BETWEEN '2014-02-18 00:00:00' AND '2014-02-21 00:00:00';
+
+        -En gros, j'ai coupé les données de ma DATETIME, car des fois elle est énorme et on veut jsute une partie. On peut même re créer la date et lui donner un format comme on le souhaite.
+______________________________________________________________________________
+FONCTION
+HOUR & MINUTE & SECOND 
+temps
+_________ 
+-On peut faire pareil avec les temps.
+
+        -SELECT first_name, last_name, HOUR(join_date) AS join_hour, MINUTE(join_date) AS join_minute, SECOND(join_date) AS join_second FROM customers WHERE join_date BETWEEN '2014-02-18 00:00:00' AND '2014-02-21 00:00:00';
+
+________
+Quand on utilise INSERT sur une date on peut utiliser la fonction NOW qui nous permet de nous donner la date exacte du moment où on insert cette donnée dans notre base de donnée.
