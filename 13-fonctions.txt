@@ -1,0 +1,82 @@
+FONCTIONS
+On va voir les fonctions connus en SQL qui vont nous permettre d'obtenir des informations précise avec nos donnée.
+______________________________________________________________________________________________
+FONCTION AVERAGE    ||
+Faire la moyenne    ||
+____________________||
+-Table products : on a des produits et chacun ont un prix 
+-Je veux obtenir la moyenne de ces prix.
+    -Je vais utiliser une fonctions qui s'appel : average : AVG() : je vais faire la moyenne de la colonne du prix. On va donner un alias au résultat de cette fonction qui va s'appeler average_price et on est sur la table products. 
+
+        -SELECT AVG(price) AS average_price FROM products;
+            -On a : average_price 	176.5000
+        (Cette fonction va passer sur chacune des lignes qu'il y a dans notre table à la colonne price, elle va prendre le chiffre et faire la moyenne. On aura une seul ligne et comme je séléctionne qu'un seul champ, on aura qu'une seule valeur).
+
+                                    ______________________    
+Comment l'utiliser de façon intelligente.
+
+    -Je veux le nom et le prix de tout mes produits qui sont supérieur à la moyenne.
+    -Si on aurait un champ qui s'appelait moyenne ont aurait écrit ça comme ceci :
+        -SELECT name, price FROM products WHERE price > "AVERAGE/Moyenne";
+
+        Alors comment faire ça ? Je vais coller de ma requête précédente et la mettre entre parenthèse.
+
+            -SELECT name, price FROM products WHERE price > (SELECT AVG(price) AS average_price FROM products);
+
+            Alors la, je lui demande :
+            -Le nom et le prix de tout mes produits dont le prix est supérieur à quoi ? au résultat de cette requête. Le résultat de cette requête c'est quoi ? C'est une valeur, la valeur de la moyenne.
+______________________________________________________________________________________________         ______________________________________________________________________________________________
+FONCTION COUNT                  ||
+Me permet de compter les valeurs||
+________________________________||
+
+    -SELECT COUNT(name) AS count_products FROM products;
+        -J'obtient 12
+        -MAIS !! Si j'ai 2x le même nom il me l'aurait compté 2x
+        -Le COUNT ne fonctionnera pas quand il y aura une valeur NULL 
+
+    -SELECT COUNT(image) AS count_products FROM products;
+        -On aura aussi 12 car le 1er image est vide est n'est pas égale à NULL
+
+On peut faire dans notre cas à nous peut importe quelle est la propriété puisqu'elle sont toute différente de NULL avec *
+ça va me compter tout simplement toute les ligens qui sont dans ma table product et ça va me donner le compte de combien il y a de ligne.
+    -SELECT COUNT(*) AS count_products FROM products;
+        -12 lignes
+            ________________________________
+        Souvent on utilisera le COUNT avec une *
+            ________________________________
+
+____________________________________________________
+DISCTINCT ||
+__________||
+Si je veux compter les valeurs distinct / Je veux les prix distinct, Donc les prix différent les uns les autres.
+
+    -SELECT COUNT(DISTINCT price) AS count_products FROM products;
+        -J'obtient 10 car j'ai 10 prix différent puisque 2 produit ont le prix qui est 30 et 2 autres est 20.
+_____________________________________________________
+Tout ce qui vient d'être montré avec les fonctions, marche aussi très bien avec WHERE. Exemple :
+
+Je veux savoir le compte qu'il y a de produit qui appartiennent à la catégorie égale à 1.
+
+    -SELECT COUNT(*) AS count_products FROM products WHERE category=1; 
+        -6
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+FONCTION MAX et MIN ||
+____________________||
+
+-Par exemple, on veut obtenir le prix maximal qu'on a sur nos produits 
+    -Pour ça on va utiliser la fonction MAX() on va lui donner un alias max_price
+
+    (à chaque fois je donne un alias mais ce n'est pas obligatoire, c'est juste que c'est plus pratique pour ensuite récupéré nos données dans notre page web par la suite.)
+
+        -SELECT MAX(price) AS max_price FROM products;
+        (Je vais séléctionner le prix maximum de la table products)
+            -Prix maximum = 500
+                    PAREIL AVEC MIN
+        -SELECT MIN(price) AS min_price FROM products;
+        (Je vais séléctionner le prix minimum de la table products)
+            -Prix minimum = 20
+
+______________________________________________________________________________________________En gros ces fonctions ont la particularité de passer sur toute les valeurs d'une colonne ou des lignes de notre table et de réunir toute ses informations dans une variable.

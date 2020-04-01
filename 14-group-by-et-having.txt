@@ -1,0 +1,105 @@
+GROUP BY et HAVING 
+
+On avait fait la moyenne des prix
+    -SELECT AVG(price) as average_price FROM products;
+        -Moyenne = 176.5000
+______________________________________________________________________________________________
+
+GROUP BY    ||
+____________||
+
+Je ne veux pas la moyenne de tout mes produits mais la moyenne par catégorie de produit.
+Ici nous avons les catégories 1 / 6 / 5 
+Je veux la moyenne de tout mes produits par catégorie 1 / 6 / 5 
+Donc, je veux que cette fonction average qui passait jusqu'à présent sur toute les valeurs de ma table, je veux qu'elle passe sur toute les valeurs de ma table mais qu'elle les regroupe selon une certaine propriété.
+
+Comment elle va les regrouper selon une certaine propriété ? 
+    -Graçe à :: GROUP BY :: et la on va dire qu'elle est le champ selon lequel on veut les grouper, dans notre cas c'est category.
+
+    -SELECT category, AVG(price) as average_price FROM products GROUP BY category;
+
+    -Pour rendre plus clair la lecture d'une requête je peux sauter des ligne. Par ex :
+        SELECT category, AVG(price) as average_price 
+        FROM products 
+        GROUP BY category;
+
+            -Résultat : 
+                -catégorie 1 = 187.6667
+                -catégorie 5 = 194.4000
+                -catégorie 6 = 20.0000
+___________________________________________________
+    Je veux amener ça dans mes pages web donc je veux les nom de mes catégories.
+
+    Je vais faire la même requête SQL mais avec un JOIN
+
+    Les propriété que je vais rejoindre c'est la catégorie de la table products à l'id de la table products_categories
+
+-On commence par : 
+        SELECT 
+    -et je veux cette fois-ci le nom qui se trouve dans la table products_categories et non pas dans la table products où je n'ai que l'id, c'est avec cette propriété qu'on va faire le lien. 
+        product_categories.name 
+    -Je fais la moyenne des prix de la table products, donc 
+        products.price 
+    -je lui laisse son aliace 
+        average_price 
+        FROM products INNER JOIN products_categories 
+        ON
+    -Quelle est la condition qui permet de relier ces 2 tables ? 
+    -C'est quand le 
+        products.category = product_categories.id 
+    -Je veux les grouper par product_categories.name 
+        GROUP BY products_categories.name;
+    
+    
+        SELECT product_categories.name, AVG(products.price) AS average_price 
+        FROM products INNER JOIN product_categories
+        ON products.category = product_categories.id
+        GROUP BY product_categories.name;
+
+            -Résultat :
+                name	        average_price 	
+                Auto 	        20.0000
+                Electronics 	187.6667
+                Sporting Goods 	194.4000
+
+            __________________________________
+ça fait trop brouillon donc je vais donner des aliace à nos tables.
+
+        SELECT pc.name, AVG(p.price) AS average_price 
+        FROM products AS p INNER JOIN product_categories AS pc
+        ON p.category = pc.id
+        GROUP BY pc.name;
+______________________________________________________________________________________________
+HAVING  ||
+________||
+
+Qu'est-ce que HAVING ?? 
+    Lorsqu'on voulait séléctionner des lignes d'une table et qu'on voulait pas mettre toute les lignes on avait le WHERE : CAD que dans nos fonctions on peut éliminer certaines lignes qui rentreront même pas en jeux.
+
+Imaginons que je ne veux pas éliminer des lignes mais que je veux éliminer des catégories.
+
+Une fois que j'ai fait GROUP BY, on a dans notre cas à nous 3 catégories, non, je ne veux pas 3 catégories. Je veux juste celles qui répondent à un critère particulier.
+
+Par exemple : 
+    On va utiliser HAVING
+    HAVING quoi ? On veut ceux dont la moyenne des prix est supérieur à 100.
+
+        SELECT pc.name, AVG(p.price) AS average_price 
+        FROM products AS p INNER JOIN product_categories AS pc
+        ON p.category = pc.id
+        GROUP BY pc.name
+        HAVING average_price > 100;
+
+            -Résultat :
+                name	        average_price 	
+                Electronics 	187.6667
+                Sporting Goods 	194.4000
+            __________________________________
+    Donc la il va me faire tout ce qu'on à fait avant, donc me donner les 3 catégories avec leur moyenne et ensuite il les filtrer.
+______________________________________________________________________________________________
+
+DIFFERENCE ENTRE WHERE ET HAVING  || 
+__________________________________||
+WHERE = on veut séléctionner les lignes qui répondent à une condition particulière mais la condition particulière se porte sur la ligne.
+    OR
+HAVING = c'est une fois qu'on a groupé nos informations, on veut afficher tout les groupes qui répondent à une condition particulière. La ça sera après avoir groupé et la condition particulière elle sera sur le groupe et pas sur la ligne.
